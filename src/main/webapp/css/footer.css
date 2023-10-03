@@ -1,0 +1,15 @@
+body > footer ul, body > footer ul li {
+    margin-bottom: 0;
+    padding: 0;
+    color: var(--muted-color);
+    list-style: none;
+}
+
+body > footer li {
+    display: inline-block
+}
+
+body > footer li:not(:first-child)::before {
+    margin: 0 .20rem;
+    content: "·"
+}
