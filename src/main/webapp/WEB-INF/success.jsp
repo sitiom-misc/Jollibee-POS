@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="<c:url value="/css/footer.css"/>">
     <title>Success! - Jollibee POS</title>
 </head>
 <body>
@@ -30,25 +30,13 @@
             <tr>
                 <th scope="row">${order.id}</th>
                 <td>${order.name}</td>
-                <td>${order.order}</td>
+                <td>${order.order.literal}</td>
                 <td>${order.quantity}</td>
                 <td>${order.price}</td>
             </tr>
         </tbody>
     </table>
 </main>
-<footer class="container">
-    <ul>
-        <li>
-            <small>Ryan Caezar Itang</small>
-        </li>
-        <li>
-            <small>ENTJAVA2</small>
-        </li>
-        <li>
-            <small>Major Exam 1</small>
-        </li>
-    </ul>
-</footer>
+<%@include file="footer.jsp"%>
 </body>
 </html>

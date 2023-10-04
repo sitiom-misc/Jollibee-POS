@@ -76,14 +76,14 @@ public class Orders extends TableImpl<OrdersRecord> {
     public final TableField<OrdersRecord, UInteger> QUANTITY = createField(DSL.name("quantity"), SQLDataType.INTEGERUNSIGNED.nullable(false), this, "");
 
     /**
-     * The column <code>pos_db.orders.price</code>.
-     */
-    public final TableField<OrdersRecord, Double> PRICE = createField(DSL.name("price"), SQLDataType.DOUBLE.nullable(false), this, "");
-
-    /**
      * The column <code>pos_db.orders.isPending</code>.
      */
     public final TableField<OrdersRecord, Boolean> ISPENDING = createField(DSL.name("isPending"), SQLDataType.BOOLEAN.nullable(false), this, "");
+
+    /**
+     * The column <code>pos_db.orders.price</code>.
+     */
+    public final TableField<OrdersRecord, Double> PRICE = createField(DSL.name("price"), SQLDataType.DOUBLE.nullable(false), this, "");
 
     private Orders(Name alias, Table<OrdersRecord> aliased) {
         this(alias, aliased, null);
@@ -182,14 +182,14 @@ public class Orders extends TableImpl<OrdersRecord> {
     // -------------------------------------------------------------------------
 
     @Override
-    public Row6<ULong, String, OrdersOrder, UInteger, Double, Boolean> fieldsRow() {
+    public Row6<ULong, String, OrdersOrder, UInteger, Boolean, Double> fieldsRow() {
         return (Row6) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function6<? super ULong, ? super String, ? super OrdersOrder, ? super UInteger, ? super Double, ? super Boolean, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function6<? super ULong, ? super String, ? super OrdersOrder, ? super UInteger, ? super Boolean, ? super Double, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -197,7 +197,7 @@ public class Orders extends TableImpl<OrdersRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function6<? super ULong, ? super String, ? super OrdersOrder, ? super UInteger, ? super Double, ? super Boolean, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function6<? super ULong, ? super String, ? super OrdersOrder, ? super UInteger, ? super Boolean, ? super Double, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }
