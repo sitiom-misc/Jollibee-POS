@@ -17,15 +17,15 @@ public enum OrdersOrder implements EnumType {
 
     Chickenjoy("Chickenjoy"),
 
-    Yumburger("Yumburger"),
-
     Jolly_Spaghetti("Jolly Spaghetti"),
+
+    Burger_Steak("Burger Steak"),
+
+    Yumburger("Yumburger"),
 
     Chicken_Sandwhich("Chicken Sandwhich"),
 
-    Palabok("Palabok"),
-
-    Burger_Steak("Burger Steak");
+    Palabok("Palabok");
 
     private final String literal;
 
