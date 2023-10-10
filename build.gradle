@@ -1,6 +1,16 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.flywaydb:flyway-mysql:9.22.2'
+    }
+}
+
 plugins {
     id 'java'
     id 'war'
+    id 'org.flywaydb.flyway' version '9.22.1'
     id 'nu.studer.jooq' version '8.2'
 }
 
@@ -10,11 +20,13 @@ version '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
 }
-sourceCompatibility = '11'
-targetCompatibility = '11'
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+}
+
+configurations {
+    flywayMigration
 }
 
 dependencies {
@@ -22,8 +34,18 @@ dependencies {
     implementation("jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0")
     implementation("org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1")
     implementation('org.mariadb.jdbc:mariadb-java-client:3.2.0')
+    flywayMigration('org.mariadb.jdbc:mariadb-java-client:3.2.0')
     jooqGenerator('org.mariadb.jdbc:mariadb-java-client:3.2.0')
     jooqGenerator("org.slf4j:slf4j-simple:2.0.9")
+}
+
+flyway {
+    configurations = ['flywayMigration']
+    url = 'jdbc:mariadb://localhost:3306'
+    user = 'root'
+    password = ''
+    schemas = ['pos_db']
+    cleanDisabled = false
 }
 
 jooq {
@@ -35,9 +57,9 @@ jooq {
                 logging = org.jooq.meta.jaxb.Logging.WARN
                 jdbc {
                     driver = 'org.mariadb.jdbc.Driver'
-                    url = 'jdbc:mariadb://localhost:3306/pos_db'
-                    user = 'root'
-                    password = ''
+                    url = flyway.url
+                    user = flyway.user
+                    password = flyway.password
                 }
                 generator {
                     name = 'org.jooq.codegen.JavaGenerator'
@@ -59,4 +81,14 @@ jooq {
             }
         }
     }
+}
+
+tasks.named('generateJooq').configure {
+    dependsOn tasks.named('flywayMigrate')
+
+    inputs.files(fileTree('src/main/resources/db/migration'))
+        .withPropertyName('migrations')
+        .withPathSensitivity(PathSensitivity.RELATIVE)
+
+    allInputsDeclared = true
 }

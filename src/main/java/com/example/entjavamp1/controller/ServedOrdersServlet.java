@@ -15,10 +15,17 @@ import java.io.IOException;
 
 @WebServlet("/served")
 public class ServedOrdersServlet extends HttpServlet {
+    private DSLContext dsl;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        dsl = (DSLContext) getServletContext().getAttribute("dslContext");
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        DSLContext create = (DSLContext) getServletContext().getAttribute("dslContext");
-        Result<OrdersRecord> orders = create.selectFrom(ORDERS).where(ORDERS.ISPENDING.eq(false)).fetch();
+        Result<OrdersRecord> orders = dsl.selectFrom(ORDERS).where(ORDERS.ISPENDING.eq(false)).fetch();
         req.setAttribute("orders", orders);
         getServletContext().getRequestDispatcher("/WEB-INF/served.jsp").forward(req, resp);
     }

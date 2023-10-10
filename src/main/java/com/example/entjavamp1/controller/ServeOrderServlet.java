@@ -15,11 +15,18 @@ import static com.example.entjavamp1.model.Tables.ORDERS;
 
 @WebServlet("/serve/*")
 public class ServeOrderServlet extends HttpServlet {
+    private DSLContext dsl;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        dsl = (DSLContext) getServletContext().getAttribute("dslContext");
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ULong id = ULong.valueOf(req.getPathInfo().split("/")[1]);
-        DSLContext create = (DSLContext) getServletContext().getAttribute("dslContext");
-        OrdersRecord order = create.selectFrom(ORDERS).where(ORDERS.ID.eq(id)).fetchOne();
+        OrdersRecord order = dsl.selectFrom(ORDERS).where(ORDERS.ID.eq(id)).fetchOne();
         if (order != null) {
             order.setIspending(false);
             order.store();

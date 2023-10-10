@@ -9,8 +9,6 @@ import com.example.entjavamp1.model.PosDb;
 import com.example.entjavamp1.model.enums.OrdersOrder;
 import com.example.entjavamp1.model.tables.records.OrdersRecord;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.function.Function;
 
 import org.jooq.Field;
@@ -131,11 +129,6 @@ public class Orders extends TableImpl<OrdersRecord> {
     @Override
     public UniqueKey<OrdersRecord> getPrimaryKey() {
         return Keys.KEY_ORDERS_PRIMARY;
-    }
-
-    @Override
-    public List<UniqueKey<OrdersRecord>> getUniqueKeys() {
-        return Arrays.asList(Keys.KEY_ORDERS_ID);
     }
 
     @Override

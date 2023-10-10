@@ -4,6 +4,7 @@
 package com.example.entjavamp1.model;
 
 
+import com.example.entjavamp1.model.tables.FlywaySchemaHistory;
 import com.example.entjavamp1.model.tables.Orders;
 
 import java.util.Arrays;
@@ -28,6 +29,11 @@ public class PosDb extends SchemaImpl {
     public static final PosDb POS_DB = new PosDb();
 
     /**
+     * The table <code>pos_db.flyway_schema_history</code>.
+     */
+    public final FlywaySchemaHistory FLYWAY_SCHEMA_HISTORY = FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY;
+
+    /**
      * The table <code>pos_db.orders</code>.
      */
     public final Orders ORDERS = Orders.ORDERS;
@@ -48,6 +54,7 @@ public class PosDb extends SchemaImpl {
     @Override
     public final List<Table<?>> getTables() {
         return Arrays.asList(
+            FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY,
             Orders.ORDERS
         );
     }

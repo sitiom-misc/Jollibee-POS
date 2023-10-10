@@ -4,7 +4,9 @@
 package com.example.entjavamp1.model;
 
 
+import com.example.entjavamp1.model.tables.FlywaySchemaHistory;
 import com.example.entjavamp1.model.tables.Orders;
+import com.example.entjavamp1.model.tables.records.FlywaySchemaHistoryRecord;
 import com.example.entjavamp1.model.tables.records.OrdersRecord;
 
 import org.jooq.TableField;
@@ -24,6 +26,6 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final UniqueKey<OrdersRecord> KEY_ORDERS_ID = Internal.createUniqueKey(Orders.ORDERS, DSL.name("KEY_orders_id"), new TableField[] { Orders.ORDERS.ID }, true);
+    public static final UniqueKey<FlywaySchemaHistoryRecord> KEY_FLYWAY_SCHEMA_HISTORY_PRIMARY = Internal.createUniqueKey(FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY, DSL.name("KEY_flyway_schema_history_PRIMARY"), new TableField[] { FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY.INSTALLED_RANK }, true);
     public static final UniqueKey<OrdersRecord> KEY_ORDERS_PRIMARY = Internal.createUniqueKey(Orders.ORDERS, DSL.name("KEY_orders_PRIMARY"), new TableField[] { Orders.ORDERS.ID }, true);
 }

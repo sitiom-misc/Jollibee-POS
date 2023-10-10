@@ -18,6 +18,14 @@ import static com.example.entjavamp1.model.Tables.*;
 
 @WebServlet("/success")
 public class OrderSuccessServlet extends HttpServlet {
+    private DSLContext dsl;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        dsl = (DSLContext) getServletContext().getAttribute("dslContext");
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HashMap<String, Double> menu = (HashMap<String, Double>) getServletContext().getAttribute("menu");
@@ -25,8 +33,7 @@ public class OrderSuccessServlet extends HttpServlet {
         UInteger quantity = UInteger.valueOf(req.getParameter("qty"));
         Double price = menu.get(item) * quantity.doubleValue();
 
-        DSLContext create = (DSLContext) getServletContext().getAttribute("dslContext");
-        OrdersRecord newOrder = create.newRecord(ORDERS);
+        OrdersRecord newOrder = dsl.newRecord(ORDERS);
         newOrder.setName(req.getParameter("name"));
         newOrder.setOrder(OrdersOrder.lookupLiteral(item));
         newOrder.setQuantity(quantity);

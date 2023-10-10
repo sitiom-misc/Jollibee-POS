@@ -4,6 +4,7 @@
 package com.example.entjavamp1.model;
 
 
+import com.example.entjavamp1.model.tables.FlywaySchemaHistory;
 import com.example.entjavamp1.model.tables.Orders;
 
 
@@ -12,6 +13,11 @@ import com.example.entjavamp1.model.tables.Orders;
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tables {
+
+    /**
+     * The table <code>pos_db.flyway_schema_history</code>.
+     */
+    public static final FlywaySchemaHistory FLYWAY_SCHEMA_HISTORY = FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY;
 
     /**
      * The table <code>pos_db.orders</code>.
