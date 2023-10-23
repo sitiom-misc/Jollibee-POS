@@ -25,6 +25,10 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
+tasks.withType(Jar) {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
 configurations {
     flywayMigration
 }
@@ -44,7 +48,7 @@ flyway {
     url = 'jdbc:mariadb://localhost:3306'
     user = 'root'
     password = ''
-    schemas = ['pos_db']
+    schemas = ['iacademy']
     cleanDisabled = false
 }
 
@@ -65,7 +69,7 @@ jooq {
                     name = 'org.jooq.codegen.JavaGenerator'
                     database {
                         name = 'org.jooq.meta.mariadb.MariaDBDatabase'
-                        inputSchema = 'pos_db'
+                        inputSchema = 'iacademy'
                         forcedTypes {
                             forcedType {
                                 name = 'BOOLEAN'
@@ -74,7 +78,7 @@ jooq {
                         }
                     }
                     target {
-                        packageName = 'com.example.entjavamp1.model'
+                        packageName = 'com.example.entjavame2.model'
                         directory = 'src/generated/jooq'
                     }
                 }

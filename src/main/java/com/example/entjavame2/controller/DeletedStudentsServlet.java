@@ -1,6 +1,6 @@
-package com.example.entjavamp1.controller;
+package com.example.entjavame2.controller;
 
-import com.example.entjavamp1.model.tables.records.OrdersRecord;
+import com.example.entjavame2.model.tables.records.StudentRecord;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.ServletException;
@@ -9,12 +9,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.jooq.DSLContext;
 import org.jooq.Result;
 
-import static com.example.entjavamp1.model.Tables.*;
-
 import java.io.IOException;
 
-@WebServlet("/served")
-public class ServedOrdersServlet extends HttpServlet {
+import static com.example.entjavame2.model.Tables.*;
+
+@WebServlet("/students/deleted")
+public class DeletedStudentsServlet extends HttpServlet {
     private DSLContext dsl;
 
     @Override
@@ -25,8 +25,8 @@ public class ServedOrdersServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Result<OrdersRecord> orders = dsl.selectFrom(ORDERS).where(ORDERS.ISPENDING.eq(false)).fetch();
-        req.setAttribute("orders", orders);
-        getServletContext().getRequestDispatcher("/WEB-INF/served.jsp").forward(req, resp);
+        Result<StudentRecord> students = dsl.selectFrom(STUDENT).where(STUDENT.ISDELETED.eq(true)).fetch();
+        req.setAttribute("students", students);
+        getServletContext().getRequestDispatcher("/WEB-INF/deleted.jsp").forward(req, resp);
     }
 }

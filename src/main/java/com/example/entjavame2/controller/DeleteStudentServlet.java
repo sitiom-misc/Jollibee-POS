@@ -1,6 +1,6 @@
-package com.example.entjavamp1.controller;
+package com.example.entjavame2.controller;
 
-import com.example.entjavamp1.model.tables.records.OrdersRecord;
+import com.example.entjavame2.model.tables.records.StudentRecord;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,10 +11,10 @@ import org.jooq.types.ULong;
 
 import java.io.IOException;
 
-import static com.example.entjavamp1.model.Tables.ORDERS;
+import static com.example.entjavame2.model.Tables.*;
 
-@WebServlet("/serve/*")
-public class ServeOrderServlet extends HttpServlet {
+@WebServlet("/student/delete/*")
+public class DeleteStudentServlet extends HttpServlet {
     private DSLContext dsl;
 
     @Override
@@ -26,12 +26,12 @@ public class ServeOrderServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ULong id = ULong.valueOf(req.getPathInfo().split("/")[1]);
-        OrdersRecord order = dsl.selectFrom(ORDERS).where(ORDERS.ID.eq(id)).fetchOne();
-        if (order != null) {
-            order.setIspending(false);
-            order.store();
+        StudentRecord student = dsl.selectFrom(STUDENT).where(STUDENT.ID.eq(id)).fetchOne();
+        if (student != null) {
+            student.setIsdeleted(true);
+            student.store();
         }
 
-        resp.sendRedirect(req.getContextPath() + "/pending");
+        resp.sendRedirect(req.getContextPath() + "/students");
     }
 }

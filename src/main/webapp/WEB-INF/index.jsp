@@ -7,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
     <link rel="stylesheet" href="<c:url value="/css/footer.css"/>">
-    <title>Jollibee POS</title>
+    <title>iACADEMY Student System</title>
 </head>
 <body>
 <main class="container">
-    <h1>Jollibee POS</h1>
-    <a href="order" role="button">Order now!</a>
-    <a href="pending" role="button" class="outline">Pending orders</a>
-    <a href="served" role="button" class="outline">Served orders</a>
+    <h1>iACADEMY Student System</h1>
+    <a href="student/add" role="button">Add Student</a>
+    <a href="students" role="button" class="outline">View Students</a>
+    <a href="students/deleted" role="button" class="outline">Deleted Students</a>
 </main>
 <%@include file="footer.jsp"%>
 </body>

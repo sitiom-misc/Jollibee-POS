@@ -1,4 +1,4 @@
-package com.example.entjavamp1.controller;
+package com.example.entjavame2.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
