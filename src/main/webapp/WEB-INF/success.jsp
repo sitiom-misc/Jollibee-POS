@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="message" scope="request" type="java.lang.String"/>
-<jsp:useBean id="order" type="com.example.entjavamp1.model.tables.records.OrdersRecord"
+<jsp:useBean id="order" type="com.example.entjava2me3.models.Order"
              scope="request"/>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +30,7 @@
             <tr>
                 <th scope="row">${order.id}</th>
                 <td>${order.name}</td>
-                <td>${order.order.literal}</td>
+                <td>${order.item}</td>
                 <td>${order.quantity}</td>
                 <td>${order.price}</td>
             </tr>

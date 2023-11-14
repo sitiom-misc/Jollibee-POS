@@ -7,7 +7,7 @@
       <small>ENTJAVA2</small>
     </li>
     <li>
-      <small>Major Exam 1</small>
+      <small>Major Exam 3</small>
     </li>
   </ul>
 </footer>
