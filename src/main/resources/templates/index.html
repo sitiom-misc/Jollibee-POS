@@ -1,0 +1,15 @@
+<!doctype html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout(title='Jollibee POS')}"
+>
+  <body>
+    <div layout:fragment="content">
+      <a th:href="@{order}" role="button">Order now!</a>
+      <a th:href="@{pending}" role="button" class="outline">Pending orders</a>
+      <a th:href="@{served}" role="button" class="outline">Served orders</a>
+    </div>
+  </body>
+</html>

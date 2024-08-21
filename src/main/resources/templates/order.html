@@ -1,0 +1,48 @@
+<!doctype html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout(title='Order')}"
+>
+  <head>
+    <title>Order</title>
+  </head>
+  <body>
+    <form
+      layout:fragment="content"
+      method="post"
+      th:action="@{/order}"
+      th:object="${order}"
+    >
+      <label>
+        Name
+        <input type="text" th:field="*{name}" placeholder="Name" required />
+      </label>
+      <label>
+        Item
+        <select id="item" name="item" th:with="item=*{item}" required>
+          <option value="" disabled selected>Select an item</option>
+          <option
+            th:each="item : ${menu}"
+            th:value="${item.key}"
+            th:text="${item.key} + ' @ ' + ${item.value}"
+          >
+            Burger @ 50
+          </option>
+        </select>
+      </label>
+      <label>
+        Quantity
+        <input
+          type="number"
+          min="1"
+          th:field="*{quantity}"
+          value="1"
+          required
+        />
+      </label>
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>

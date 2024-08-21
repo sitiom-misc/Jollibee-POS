@@ -1,0 +1,37 @@
+<!doctype html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout(title='Served orders')}"
+>
+  <head>
+    <title>Served orders</title>
+  </head>
+  <body>
+    <table role="grid" layout:fragment="content">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Order</th>
+          <th scope="col">Qty</th>
+          <th scope="col">Price</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="order : ${orders}">
+          <th scope="row" th:text="${order.id}">1</th>
+          <td th:text="${order.name}">John Doe</td>
+          <td th:text="${order.item}">Burger</td>
+          <td th:text="${order.quantity}">2</td>
+          <td th:text="${order.price}">100</td>
+          <td>
+            <a th:href="@{/print/{id}(id=${order.id})}">Print receipt</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

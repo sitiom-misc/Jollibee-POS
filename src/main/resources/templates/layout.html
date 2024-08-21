@@ -1,0 +1,30 @@
+<!doctype html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
+    <link rel="stylesheet" th:href="@{/css/footer.css}" />
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">
+      Jollibee POS
+    </title>
+  </head>
+  <body>
+    <main class="container">
+      <h1 th:text="${title}"></h1>
+      <a th:if="${requestUri != '/' and requestUri != '/order'}" th:href="@{/}"
+        >Back to Home</a
+      >
+      <div layout:fragment="content"></div>
+      <a th:if="${requestUri == '/order'}" th:href="@{/}">Back to Home</a>
+    </main>
+    <footer th:replace="fragments/footer :: footer"></footer>
+  </body>
+</html>
